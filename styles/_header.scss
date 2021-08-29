@@ -1,0 +1,39 @@
+.header{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding-bottom: 35px;
+	border-bottom: 1px solid #F6F6F6;
+	margin-bottom: 40px;
+
+	&__logo{
+		display: flex;
+		align-items: center;
+		font-family: 'Proximanova';
+
+		img{
+			width: 38px;
+			height: 38px;
+			margin-right: 17px;
+
+			&:hover{
+				transform: rotate(360deg);
+				transition: transform 1s;
+			}
+		}
+
+		h1{
+			font-weight: 800;
+			font-size: 24px;
+			line-height: 29px;
+			text-transform: uppercase;
+		}
+
+		p{
+			font-weight: normal;
+			font-size: 16px;
+			line-height: 19px;
+			color: #7B7B7B;
+		}
+	}
+}

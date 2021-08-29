@@ -1,0 +1,91 @@
+//<ШРИФТЫ>
+//<Подключение шрифтов>
+@font-face {
+	font-family: 'Proximanova';
+	src: url('../fonts/proximanova-bold.eot');
+	src: local('☺'), url('../fonts/proximanova-bold.woff') format('woff'), url('../fonts/proximanova-bold.ttf') format('truetype'), url('../fonts/proximanova-bold.svg') format('svg');
+	font-weight: 800;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Proximanova';
+	src: url('../fonts/Mark Simonson - Proxima Nova Regular.eot');
+	src: local('☺'), url('../fonts/Mark Simonson - Proxima Nova Regular.woff') format('woff'), url('../fonts/Mark Simonson - Proxima Nova Regular.ttf') format('truetype'), url('../fonts/Mark Simonson - Proxima Nova Regular.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Proximanova-rus';
+	src: url('../fonts/Mark Simonson - Proxima Nova Bold.eot');
+	src: local('☺'), url('../fonts/Mark Simonson - Proxima Nova Bold.woff') format('woff'), url('../fonts/Mark Simonson - Proxima Nova Bold.ttf') format('truetype'), url('../fonts/Mark Simonson - Proxima Nova Bold.svg') format('svg');
+	font-weight: 800;
+	font-style: normal;
+}
+//</Подключение шрифтов>
+
+
+//<Шрифт по умолчанию>
+$fontfamily: "PT Sans";
+//</Шрифт по умолчанию>
+
+//</ШРИФТЫ>
+
+//<Обнуление стилей>
+*{padding: 0px; margin: 0px; border: 0px;}
+*, *:after, *:before{-moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;}
+:focus, :active{outline: none;}
+a:focus, a:active{outline: none;}
+aside, nav, footer, header, section{display: block;}
+html, body{height: 100%; margin: 0; padding: 0; position: relative; width: 100%; color: #000;}
+body{font-size: 100%; line-height: 1; font-size: 14px; font-family: $fontfamily; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; -webkit-text-size-adjust: 100%;
+}
+input, button, textarea{font-family: $fontfamily;}
+input::-ms-clear{display: none;}
+button{cursor: pointer;}
+button::-moz-focus-inner{padding: 0; border: 0;}
+a, a:visited{text-decoration: none;}
+a:hover{text-decoration: none;}
+ul li{list-style: none;}
+img{vertical-align: top;}
+h1, h2, h3, h4, h5, h6{font-weight: inherit; font-size: inherit;}
+//</Обнуление стилей>
+
+
+//<Обертка>
+.wrapper{width: 100%; min-height: 100%; overflow: hidden;}
+//</Обертка>
+
+
+//<Сетка адаптива>
+.container{max-width: 1225px; margin: 0 auto; width: 100%;
+}
+//</Сетка адаптива>
+
+
+//<Подключение стилей>
+@import '_header.scss';
+@import '_main.scss';
+//</Подключение стилей>
+
+
+//<Основной блок>
+
+body{
+	background-color: #FFDF8C;
+}
+
+.wrapper{
+	max-width: 1340px;
+	margin: 50px auto;
+	background: #FFFFFF;
+	box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.03);
+	border-radius: 10px;
+}
+
+.container {
+	padding: 50px 0px 30px;
+}
+
+//</Основной блок>
