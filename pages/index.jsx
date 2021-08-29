@@ -1,23 +1,25 @@
+import React, { useState } from "react";
+
 import { Header, PizzaItem } from "../components";
 
 export default function Index() {
   return (
     <>
-      <div class="wrapper">
-        <div class="container">
+      <div className="wrapper">
+        <div className="container">
           <Header />
-          <div class="content">
-            <div class="content__top">
-              <ul class="categories">
-                <li class="categories__item active">Все</li>
-                <li class="categories__item">Мясная</li>
-                <li class="categories__item">Вегетарианская</li>
-                <li class="categories__item">Гриль</li>
-                <li class="categories__item">Острая</li>
-                <li class="categories__item">Закрытая</li>
+          <div className="content">
+            <div className="content__top">
+              <ul className="categories">
+                <li className="categories__item active">Все</li>
+                <li className="categories__item">Мясная</li>
+                <li className="categories__item">Вегетарианская</li>
+                <li className="categories__item">Гриль</li>
+                <li className="categories__item">Острая</li>
+                <li className="categories__item">Закрытая</li>
               </ul>
-              <div class="sort">
-                <div class="sort__label">
+              <div className="sort">
+                <div className="sort__label">
                   <svg
                     width="10"
                     height="6"
@@ -33,17 +35,17 @@ export default function Index() {
                   <b>Сортировка по:</b>
                   <span>популярности</span>
                 </div>
-                <div class="sort__popup">
+                <div className="sort__popup">
                   <ul>
-                    <li class="popup__item active">популярности</li>
-                    <li class="popup__item">цене</li>
-                    <li class="popup__item">алфавиту</li>
+                    <li className="active">популярности</li>
+                    <li>цене</li>
+                    <li>алфавиту</li>
                   </ul>
                 </div>
               </div>
             </div>
-            <h2 class="content__title">Все пиццы</h2>
-            <div class="content__items">
+            <h2 className="content__title">Все пиццы</h2>
+            <div className="content__items">
               <PizzaItem />
               <PizzaItem />
               <PizzaItem />

@@ -1,0 +1,133 @@
+.button{
+	transition: all 0.2s;
+	user-select: none;
+	background: #FE5F1E;
+	border-radius: 30px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
+	i{
+		margin-left: 5px;
+		font-family: 'Proximanova-rus';
+		font-style: normal;
+		font-weight: 800;
+		font-size: 13px;
+		color: #fff;
+		width: 22px;
+		height: 22px;
+		background-color: #EB5A1E;
+		text-align: center;
+		line-height: 22px;
+		border-radius: 30px;
+	}
+
+	&:hover{
+		background: darken(#FE5F1E, 5%);
+
+		i{
+			background-color: #FFFFFF;
+			color: #EB5A1E;
+		}
+		
+		span{
+			color: #fff;
+		}
+
+		svg{
+			path{
+				fill: #fff;
+			}
+		}
+	}
+
+	&:active{
+		background: darken(#FE5F1E, 10%);
+	}
+
+	&__delimiter{
+		background: rgba(255, 255, 255, 0.25);
+		width: 1px;
+		height: 25px;
+	}
+
+	span{
+		font-family: 'Proximanova-rus';
+		font-weight: 800;
+		font-size: 16px;
+		line-height: 19px;
+		color: #fff;
+	}
+
+	&_cart{
+		width: 150px;
+		height: 50px;
+		padding: 0px 15px;
+	}
+
+	&_add{
+		height: 40px;
+		padding: 0px 15px;
+
+		svg{
+			margin-right: 7px;
+		}
+	}
+
+	&_outline{
+		background: #FFFFFF;
+		border: 1px solid #EB5A1E;
+
+		svg{
+			path{
+				fill: #EB5A1E;
+			}
+		}
+
+		span{
+			color: #EB5A1E;
+		}
+	}
+
+	&_pay{
+		padding: 18px 25px;
+	}
+
+	&_back{
+		border: 1px solid #D3D3D3;
+		box-sizing: border-box;
+		border-radius: 30px;
+		display: flex;
+		align-items: center;
+		padding: 18px 25px;
+		user-select: none;
+
+		svg{
+			margin-right: 10px;
+		}
+
+		span{
+			font-family: 'Proximanova';
+			font-size: 16px;
+			line-height: 12px;
+			text-align: center;
+			color: #CACACA;
+		}
+
+		&:hover{
+			cursor: pointer;
+			border-color:#FE5F1E;
+
+			span{
+				color: #FE5F1E;
+			}
+
+			svg{
+				path{
+					stroke: #FE5F1E;
+				}
+			}
+		}
+	}
+}

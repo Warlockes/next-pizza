@@ -1,23 +1,23 @@
 export default function PizzaItem() {
   return (
     <>
-      <div class="pizza-item">
-        <img class="pizza-item__image" src="/img/pizza.png" alt="Pizza" />
-        <h3 class="pizza-item__title">Чизбургер-пицца</h3>
-        <div class="pizza-item__selector">
+      <div className="pizza-item">
+        <img className="pizza-item__image" src="/img/pizza.png" alt="Pizza" />
+        <h3 className="pizza-item__title">Чизбургер-пицца</h3>
+        <div className="pizza-item__selector">
           <ul>
-            <li class="active">тонкое</li>
+            <li className="active">тонкое</li>
             <li>традиционное</li>
           </ul>
           <ul>
-            <li class="active">26 см.</li>
+            <li className="active">26 см.</li>
             <li>30 см.</li>
             <li>40 см.</li>
           </ul>
         </div>
-        <div class="pizza-item__bottom">
-          <div class="pizza-item__price">от 395 руб.</div>
-          <a class="button button_add button_outline">
+        <div className="pizza-item__bottom">
+          <div className="pizza-item__price">от 395 руб.</div>
+          <a className="button button_add button_outline">
             <svg
               width="12"
               height="12"

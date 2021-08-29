@@ -1,0 +1,294 @@
+.cart-container {
+	padding: 50px 0px 130px;
+	max-width: 1225px; 
+	margin: 0 auto; 
+	width: 100%;
+}
+
+.cart {
+	width: 800px;
+	margin: 0 auto;
+
+	&__top{
+		margin-bottom: 30px;
+	}
+
+	&__total {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		margin-bottom: 40px;
+	}
+
+	&__button-row {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+}
+
+.cart-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	&__hider{
+		height: 39px;
+		width: 100px;
+		position: absolute;
+		left: 43px;
+		background-color: #fff;
+	}
+
+	&__label {
+		display: flex;
+		align-items: center;
+		position: relative;
+		cursor: default;
+
+
+		&:hover{
+			svg{
+				transform: translate(50px, 0px);
+				transition: transform 1s;
+			}
+		}
+
+		svg{
+			transform: translate(0px, 0px);
+			transition: transform 1s;
+			margin-right: 12px;
+		}
+
+		span{
+			font-family: 'Proximanova-rus';
+			font-weight: 800;
+			font-size: 32px;
+			line-height: 39px;
+			letter-spacing: 0.01em;
+			color: #3F3F3F;
+			z-index: 10;
+		}
+	}
+
+	&__cleaner {
+		display: flex;
+		align-items: center;
+
+		svg{
+			margin-right: 7px;
+		}
+
+		span{
+			font-family: 'Proximanova';
+			font-size: 16px;
+			line-height: 19px;
+			color: #B6B6B6;
+		}
+
+		&:hover{
+			cursor: pointer;
+
+			span{
+				color: #FE5F1E;
+			}
+
+			svg{
+				path{
+					stroke:#FE5F1E;
+				}
+			}
+		}
+	}
+}
+
+.cart-item {
+	display: flex;
+	align-items: center;
+	padding-top: 30px;
+	border-top: 1px solid #F4F4F4 ;
+	margin-bottom: 30px;
+
+	&:last-child{
+		margin-bottom: 40px;
+	}
+	
+	&__description {
+		display: flex;
+		align-items: center;
+		flex: 1 1 450px;
+
+		span{
+			font-family: 'Proximanova';
+			font-size: 18px;
+			line-height: 22px;
+			letter-spacing: 0.01em;
+			color: #8D8D8D;
+		}
+
+		h3{
+			font-family: 'Proximanova-rus';
+			font-weight: 800;
+			font-size: 22px;
+			line-height: 27px;
+			letter-spacing: 0.01em;
+			margin-bottom: 3px;
+		}
+
+		img{
+			width: 80px;
+			height: 80px;
+			overflow: hidden;
+			margin-right: 15px;
+		}
+	}
+
+	&__counter {
+		display: flex;
+		align-items: center;
+		flex: 1 1 102px;
+
+		span{
+			font-family: 'Proximanova-rus';
+			font-weight: 800;
+			font-size: 22px;
+			line-height: 27px;
+			letter-spacing: 0.01em;
+			padding: 0px 12px;
+		}
+
+		a{
+			cursor: pointer;
+		}
+	}
+
+	&__price {
+		font-family: 'Proximanova-rus';
+		font-weight: 800;
+		font-size: 22px;
+		line-height: 27px;
+		letter-spacing: 0.01em;
+		flex: 1 1 245px;
+		text-align: center;
+	}
+
+	&__delete {
+		cursor: pointer;
+
+		&:hover{
+			svg{
+
+				circle{
+					stroke: #FE5F1E;
+				}
+
+				path{
+					fill: #FE5F1E;
+				}
+			}
+		}
+	}
+}
+
+.total {
+
+	&__amount {
+		font-size: 22px;
+		line-height: 27px;
+		letter-spacing: 0.01em;
+
+		span{
+			font-family: 'Proximanova';
+		}
+
+		b{
+			font-family: 'Proximanova-rus';
+			font-weight: 800;
+		}
+	}
+
+	&__sum {
+		font-size: 22px;
+		line-height: 27px;
+		letter-spacing: 0.01em;
+
+		span{
+			font-family: 'Proximanova';
+		}
+
+		b{
+			font-family: 'Proximanova-rus';
+			font-weight: 800;
+			color: #FE5F1E;
+		}
+	}
+}
+
+.cart-empty {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	&__label {
+		font-family: 'Proximanova-rus';
+		font-weight: 800;
+		font-size: 32px;
+		line-height: 32px;
+		letter-spacing: 0.01em;
+		display: flex;
+		margin-bottom: 10px;
+
+		img{
+			width: 32px;
+			height: 32px;
+			overflow: hidden;
+		}
+
+		span{
+			margin-right: 10px;
+		}
+	}
+
+	&__message {
+		font-family: 'Proximanova';
+		font-size: 18px;
+		text-align: center;
+		letter-spacing: 0.01em;
+		color: #777777;
+		margin-bottom: 45px;
+
+		span{
+			display: block;
+			margin-bottom: 10px;
+		}
+	}
+
+	&__image {
+		margin-bottom: 75px;
+		height: 255px;
+		width: 300px;
+		overflow: hidden;
+	}
+
+	&__button {
+		background: #282828;
+		border-radius: 30px;
+		color: #fff;
+		font-family: 'Proximanova-rus';
+		font-weight: 800;
+		font-size: 16px;
+		line-height: 19px;
+		letter-spacing: 0.015em;
+		padding: 16px 25px;
+		user-select: none;
+		cursor: pointer;
+
+		&:hover{
+			background-color: #FE5F1E;
+		}
+
+		&:active{
+			background-color: darken(#FE5F1E, 5%);
+		}
+	}
+}
