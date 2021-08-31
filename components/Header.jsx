@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Button from "./Button";
 
 export default function Header({ cart }) {
   return (
@@ -13,13 +14,13 @@ export default function Header({ cart }) {
         </div>
         {!cart && (
           <div className="header__cart">
-            <Link href="/cart">
-              <a className="button button_cart">
+            <Link href="/cart" passHref>
+              <Button className="button_cart" path="/cart">
                 <span>520 руб.</span>
                 <div className="button__delimiter"></div>
                 <img src="/img/cart-icon.svg" alt="Cart icon" />
                 <span>3</span>
-              </a>
+              </Button>
             </Link>
           </div>
         )}

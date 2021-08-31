@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Header, CartPizzaItem } from "../components";
+import { Header, CartPizzaItem, EmptyCart, Button } from "../components";
 
 export default function Cart() {
   let emptyCart = false;
@@ -103,7 +103,7 @@ export default function Cart() {
               </div>
               <div className="cart__button-row">
                 <Link href="/">
-                  <a className="button_back">
+                  <Button className="button_back">
                     <svg
                       width="8"
                       height="14"
@@ -120,34 +120,15 @@ export default function Cart() {
                       />
                     </svg>
                     <span>Вернуться назад</span>
-                  </a>
+                  </Button>
                 </Link>
-                <a className="button button_pay">
+                <Button className="button_pay">
                   <span>Оплатить сейчас</span>
-                </a>
+                </Button>
               </div>
             </div>
           ) : (
-            <div class="cart-empty">
-              <div class="cart-empty__label">
-                <span>Корзина пустая</span>
-                <img src="/img/sad.png" alt="Sad face" />
-              </div>
-              <div class="cart-empty__message">
-                <span>Вероятней всего, вы еще не выбрали пиццу.</span>
-                <span>
-                  Для того, чтобы заказать пиццу, перейди на главную страницу.
-                </span>
-              </div>
-              <img
-                class="cart-empty__image"
-                src="/img/cart-image.png"
-                alt="Empty cart image"
-              />
-              <Link href="/">
-                <a class="cart-empty__button">Вернуться назад</a>
-              </Link>
-            </div>
+            <EmptyCart />
           )}
         </div>
       </div>

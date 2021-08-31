@@ -1,3 +1,5 @@
+import Button from "./Button";
+
 export default function PizzaItem() {
   return (
     <>
@@ -17,7 +19,7 @@ export default function PizzaItem() {
         </div>
         <div className="pizza-item__bottom">
           <div className="pizza-item__price">от 395 руб.</div>
-          <a className="button button_add button_outline">
+          <Button className="button_add button_outline">
             <svg
               width="12"
               height="12"
@@ -32,7 +34,7 @@ export default function PizzaItem() {
             </svg>
             <span>Добавить</span>
             <i>2</i>
-          </a>
+          </Button>
         </div>
       </div>
     </>
