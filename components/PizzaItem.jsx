@@ -1,24 +1,48 @@
-import Button from "./Button";
+import React, { useState } from "react";
 
-export default function PizzaItem() {
+import { Button } from "./";
+
+export default function PizzaItem({ name, imageUrl, price, sizes, types }) {
+  const [selectedPizzaSizeId, setSelectedPizzaSizeId] = useState(0);
+  const [selectedPizzaTypeId, setSelectedPizzaTypeId] = useState(0);
+
+  const onSelectPizzaSize = (id) => {
+    setSelectedPizzaSizeId(id);
+  };
+
+  const onSelectPizzaType = (id) => {
+    setSelectedPizzaTypeId(id);
+  };
+
   return (
     <>
       <div className="pizza-item">
-        <img className="pizza-item__image" src="/img/pizza.png" alt="Pizza" />
-        <h3 className="pizza-item__title">Чизбургер-пицца</h3>
+        <img className="pizza-item__image" src={imageUrl} alt="Pizza" />
+        <h3 className="pizza-item__title">{name}</h3>
         <div className="pizza-item__selector">
           <ul>
-            <li className="active">тонкое</li>
-            <li>традиционное</li>
+            {types?.map((type, index) => (
+              <li
+                key={type}
+                className={selectedPizzaTypeId === index ? "active" : ""}
+                onClick={() => onSelectPizzaType(index)}
+              >
+                {type}
+              </li>
+            ))}
           </ul>
           <ul>
-            <li className="active">26 см.</li>
-            <li>30 см.</li>
-            <li>40 см.</li>
+            {sizes?.map((size, index) => (
+              <li
+                key={size}
+                className={selectedPizzaSizeId === index ? "active" : ""}
+                onClick={() => onSelectPizzaSize(index)}
+              >{`${size} см.`}</li>
+            ))}
           </ul>
         </div>
         <div className="pizza-item__bottom">
-          <div className="pizza-item__price">от 395 руб.</div>
+          <div className="pizza-item__price">{`от ${price} руб.`}</div>
           <Button className="button_add button_outline">
             <svg
               width="12"

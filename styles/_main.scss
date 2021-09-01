@@ -149,14 +149,16 @@
 		font-family: 'Proximanova-rus';
 		line-height: 17px;
 		letter-spacing: 0.015em;
+		display: flex;
+		align-items: center;
 
 		svg{
 			margin-right: 5px;
-			transform: rotate(180deg);
+			transform: rotate(90deg);
 			transition: transform 0.5s;
 
 			&.rotated{
-				transform: rotate(0deg);
+				transform: rotate(180deg);
 			}
 		}
 
