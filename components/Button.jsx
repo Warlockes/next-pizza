@@ -1,5 +1,6 @@
 import React from "react";
 
+import PropTypes from "prop-types";
 import classNames from "classnames";
 
 const Button = React.forwardRef(
@@ -16,5 +17,9 @@ const Button = React.forwardRef(
     );
   }
 );
+
+Button.propTypes = {
+  className: PropTypes.string,
+};
 
 export default Button;

@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function EmptyCart() {
+function EmptyCart() {
   return (
     <>
       <div class="cart-empty">
@@ -19,10 +19,12 @@ export default function EmptyCart() {
           src="/img/cart-image.png"
           alt="Empty cart image"
         />
-        <Link href="/">
+        <Link href="/z">
           <a class="cart-empty__button">Вернуться назад</a>
         </Link>
       </div>
     </>
   );
 }
+
+export default EmptyCart;

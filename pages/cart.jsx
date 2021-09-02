@@ -1,7 +1,8 @@
 import Link from "next/link";
+
 import { Header, CartPizzaItem, EmptyCart, Button } from "../components";
 
-export default function Cart() {
+function Cart() {
   let emptyCart = false;
   return (
     <>
@@ -135,3 +136,5 @@ export default function Cart() {
     </>
   );
 }
+
+export default Cart;

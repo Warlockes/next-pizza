@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 
+import PropTypes from "prop-types";
+
 import { Button } from "./";
 
-export default function PizzaItem({ name, imageUrl, price, sizes, types }) {
+function PizzaItem({ name, imageUrl, price, sizes, types }) {
   const [selectedPizzaSizeId, setSelectedPizzaSizeId] = useState(0);
   const [selectedPizzaTypeId, setSelectedPizzaTypeId] = useState(0);
 
@@ -64,3 +66,22 @@ export default function PizzaItem({ name, imageUrl, price, sizes, types }) {
     </>
   );
 }
+
+PizzaItem.propTypes = {
+  name: PropTypes.string,
+  imageUrl: PropTypes.string,
+  price: PropTypes.number,
+  sizes: PropTypes.arrayOf(PropTypes.number),
+  types: PropTypes.arrayOf(PropTypes.string),
+};
+
+PizzaItem.defaultProps = {
+  name: "---",
+  imageUrl:
+    "https://dodopizza.azureedge.net/static/Img/Products/Pizza/ru-RU/ec29465e-606b-4a04-a03e-da3940d37e0e.jpg",
+  price: 0,
+  sizes: [],
+  types: [],
+};
+
+export default PizzaItem;

@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 
+import PropTypes from "prop-types";
 import classNames from "classnames";
 
-export default function Categories({ categories }) {
+function Categories({ categories }) {
   const [selectedItemIndex, setSelectedItemIndex] = useState(null);
 
   const onSelectItem = (index) => {
@@ -32,9 +33,18 @@ export default function Categories({ categories }) {
               {category}
             </li>
           );
-          console.log(category);
         })}
       </ul>
     </>
   );
 }
+
+Categories.propTypes = {
+  categories: PropTypes.arrayOf(PropTypes.string),
+};
+
+Categories.defaultProps = {
+  categories: [],
+};
+
+export default Categories;

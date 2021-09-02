@@ -1,4 +1,4 @@
-export default function CartPizzaItem() {
+function CartPizzaItem() {
   return (
     <>
       <div className="cart-item">
@@ -83,3 +83,5 @@ export default function CartPizzaItem() {
     </>
   );
 }
+
+export default CartPizzaItem;

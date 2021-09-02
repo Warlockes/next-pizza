@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 
-export default function Sort({ items }) {
+import PropTypes from "prop-types";
+
+function Sort({ items }) {
   const [visiblePopup, setVisiblePopup] = useState(false);
   const [selectedItemIndex, setSelectedItemIndex] = useState(0);
   const sortRef = useRef();
@@ -63,3 +65,13 @@ export default function Sort({ items }) {
     </div>
   );
 }
+
+Sort.propTypes = {
+  items: PropTypes.arrayOf(PropTypes.string),
+};
+
+Sort.defaultProps = {
+  items: [],
+};
+
+export default Sort;

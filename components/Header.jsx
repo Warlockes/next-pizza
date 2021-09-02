@@ -1,7 +1,10 @@
 import Link from "next/link";
-import Button from "./Button";
 
-export default function Header({ cart }) {
+import PropTypes from "prop-types";
+
+import { Button } from "./";
+
+function Header({ cart }) {
   return (
     <>
       <div className="header">
@@ -28,3 +31,9 @@ export default function Header({ cart }) {
     </>
   );
 }
+
+Header.propTypes = {
+  cart: PropTypes.bool,
+};
+
+export default Header;

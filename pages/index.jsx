@@ -4,10 +4,8 @@ import axios from "axios";
 
 import { Categories, Header, PizzaItem, Sort } from "../components";
 
-export default function Index() {
+function Index() {
   const [pizzaItems, setPizzaItems] = useState([]);
-
-  // getInitialProps
 
   useEffect(() => {
     axios.get("http://localhost:30001/pizzas").then(({ data }) => {
@@ -45,3 +43,5 @@ export default function Index() {
     </>
   );
 }
+
+export default Index;
