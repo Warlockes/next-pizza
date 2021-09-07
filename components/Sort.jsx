@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 
 import PropTypes from "prop-types";
 
-function Sort({ items }) {
+function Sort({ sortBy }) {
   const [visiblePopup, setVisiblePopup] = useState(false);
   const [selectedItemIndex, setSelectedItemIndex] = useState(0);
   const sortRef = useRef();
@@ -45,18 +45,20 @@ function Sort({ items }) {
           />
         </svg>
         <b>Сортировка по:</b>
-        <span onClick={tooglePopupVisible}>{items[selectedItemIndex]}</span>
+        <span onClick={tooglePopupVisible}>
+          {sortBy[selectedItemIndex].name}
+        </span>
       </div>
       {visiblePopup && (
         <div className="sort__popup">
           <ul>
-            {items?.map((item, index) => (
+            {sortBy?.map((item, index) => (
               <li
-                key={`${item}_${index}`}
+                key={`${item.name}_${index}`}
                 className={selectedItemIndex === index ? "active" : ""}
                 onClick={() => onSelectItem(index)}
               >
-                {item}
+                {item.name}
               </li>
             ))}
           </ul>
@@ -67,11 +69,11 @@ function Sort({ items }) {
 }
 
 Sort.propTypes = {
-  items: PropTypes.arrayOf(PropTypes.string),
+  sortBy: PropTypes.arrayOf(PropTypes.object),
 };
 
 Sort.defaultProps = {
-  items: [],
+  sortBy: {},
 };
 
 export default Sort;

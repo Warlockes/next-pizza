@@ -19,7 +19,7 @@ function EmptyCart() {
           src="/img/cart-image.png"
           alt="Empty cart image"
         />
-        <Link href="/z">
+        <Link href="/">
           <a class="cart-empty__button">Вернуться назад</a>
         </Link>
       </div>
