@@ -1,5 +1,5 @@
-export function setSortBy(sortBy) {
-  return { type: "SET_SORT_BY", payload: sortBy };
+export function setSortBy(type) {
+  return { type: "SET_SORT_BY", payload: type };
 }
 
 export function setCategory(index) {

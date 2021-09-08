@@ -1,28 +1,28 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useCallback } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 import { Categories, Header, PizzaItem, Sort } from "../components";
+import { setCategory, setSortBy } from "../redux/actions/filters";
+
+const categories = ["Мясная", "Вегетарианская", "Гриль", "Острая", "Закрытая"];
+
+const sortBy = [
+  { name: "популярности", type: "popular" },
+  { name: "цене", type: "price" },
+  { name: "алфавиту", type: "alphabet" },
+];
 
 function Home() {
-  const { items } = useSelector(({ pizzas }) => {
-    return {
-      items: pizzas.items,
-    };
+  const dispatch = useDispatch();
+  const items = useSelector(({ pizzas }) => pizzas.items);
+
+  const onClickCategory = useCallback((index) => {
+    dispatch(setCategory(index));
+  }, []);
+
+  const onClickSort = useCallback((type) => {
+    dispatch(setSortBy(type));
   });
-
-  const categories = [
-    "Мясная",
-    "Вегетарианская",
-    "Гриль",
-    "Острая",
-    "Закрытая",
-  ];
-
-  const sortBy = [
-    { name: "популярности", type: "popular" },
-    { name: "цене", type: "price" },
-    { name: "алфавиту", type: "alphabet" },
-  ];
 
   return (
     <>
@@ -31,8 +31,8 @@ function Home() {
           <Header />
           <div className="content">
             <div className="content__top">
-              <Categories categories={categories} />
-              <Sort sortBy={sortBy} />
+              <Categories categories={categories} onClick={onClickCategory} />
+              <Sort sortBy={sortBy} onClick={onClickSort} />
             </div>
             <h2 className="content__title">Все пиццы</h2>
             <div className="content__items">

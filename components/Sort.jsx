@@ -1,8 +1,7 @@
-import React, { useState, useRef, useEffect } from "react";
-
+import { useState, useRef, useEffect, memo } from "react";
 import PropTypes from "prop-types";
 
-function Sort({ sortBy }) {
+const Sort = memo(function Sort({ sortBy, onClick }) {
   const [visiblePopup, setVisiblePopup] = useState(false);
   const [selectedItemIndex, setSelectedItemIndex] = useState(0);
   const sortRef = useRef();
@@ -18,8 +17,9 @@ function Sort({ sortBy }) {
     setVisiblePopup(!visiblePopup);
   };
 
-  const onSelectItem = (index) => {
+  const onSelect = (index, type) => {
     setSelectedItemIndex(index);
+    onClick(type);
   };
 
   const handleOutsidePopupClick = (event) => {
@@ -56,7 +56,7 @@ function Sort({ sortBy }) {
               <li
                 key={`${item.name}_${index}`}
                 className={selectedItemIndex === index ? "active" : ""}
-                onClick={() => onSelectItem(index)}
+                onClick={() => onSelect(index, item.type)}
               >
                 {item.name}
               </li>
@@ -66,7 +66,7 @@ function Sort({ sortBy }) {
       )}
     </div>
   );
-}
+});
 
 Sort.propTypes = {
   sortBy: PropTypes.arrayOf(PropTypes.object),

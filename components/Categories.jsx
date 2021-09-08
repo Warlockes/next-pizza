@@ -1,20 +1,20 @@
-import React, { useState } from "react";
-
+import { useState, memo } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 
-function Categories({ categories }) {
+const Categories = memo(function Categories({ categories, onClick }) {
   const [selectedItemIndex, setSelectedItemIndex] = useState(null);
 
-  const onSelectItem = (index) => {
+  const onSelect = (index) => {
     setSelectedItemIndex(index);
+    onClick(index);
   };
 
   return (
     <>
       <ul className="categories">
         <li
-          onClick={() => onSelectItem(null)}
+          onClick={() => onSelect(null)}
           className={classNames("categories__item", {
             active: selectedItemIndex === null,
           })}
@@ -28,7 +28,7 @@ function Categories({ categories }) {
               className={classNames("categories__item", {
                 active: selectedItemIndex === index,
               })}
-              onClick={() => onSelectItem(index)}
+              onClick={() => onSelect(index)}
             >
               {category}
             </li>
@@ -37,7 +37,7 @@ function Categories({ categories }) {
       </ul>
     </>
   );
-}
+});
 
 Categories.propTypes = {
   categories: PropTypes.arrayOf(PropTypes.string),
