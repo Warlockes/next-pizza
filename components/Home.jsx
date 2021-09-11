@@ -1,8 +1,9 @@
-import React, { useCallback } from "react";
+import React, { useEffect, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { Categories, Header, PizzaItem, Sort } from "../components";
 import { setCategory, setSortBy } from "../redux/actions/filters";
+import { fetchPizzas } from "../redux/actions/pizzas";
 
 const categories = ["Мясная", "Вегетарианская", "Гриль", "Острая", "Закрытая"];
 
@@ -15,6 +16,12 @@ const sortBy = [
 function Home() {
   const dispatch = useDispatch();
   const items = useSelector(({ pizzas }) => pizzas.items);
+  const category = useSelector(({ filters }) => filters.category);
+  const sort = useSelector(({ filters }) => filters.sortBy);
+
+  useEffect(() => {
+    dispatch(fetchPizzas());
+  }, [category, sort]);
 
   const onClickCategory = useCallback((index) => {
     dispatch(setCategory(index));
