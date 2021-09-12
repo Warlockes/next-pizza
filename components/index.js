@@ -6,3 +6,4 @@ export { default as Categories } from "./Categories";
 export { default as Button } from "./Button";
 export { default as Sort } from "./Sort";
 export { default as Home } from "./Home";
+export { default as ItemsLoader } from "./PizzaItem/ItemsLoader";

@@ -6,14 +6,14 @@
       "name": "Пепперони Фреш с перцем",
       "types": ["тонкое", "традиционное"],
       "sizes": [26, 30, 40],
-      "price": 803,
+      "price": 600,
       "category": 0,
       "rating": 4
     },
     {
       "id": 1,
       "imageUrl": "https://dodopizza.azureedge.net/static/Img/Products/Pizza/ru-RU/2ffc31bb-132c-4c99-b894-53f7107a1441.jpg",
-      "name": "Сырная",
+      "name": "Сырная  🌱",
       "types": ["тонкое"],
       "sizes": [26, 40],
       "price": 245,
@@ -27,7 +27,7 @@
       "types": ["тонкое"],
       "sizes": [26, 40],
       "price": 295,
-      "category": 1,
+      "category": 2,
       "rating": 4
     },
     {
@@ -37,7 +37,7 @@
       "types": ["традиционное"],
       "sizes": [26, 30, 40],
       "price": 275,
-      "category": 2,
+      "category": 0,
       "rating": 2
     },
     {
@@ -57,7 +57,7 @@
       "types": ["тонкое"],
       "sizes": [30, 40],
       "price": 580,
-      "category": 2,
+      "category": 3,
       "rating": 2
     },
     {
@@ -67,7 +67,7 @@
       "types": ["тонкое", "традиционное"],
       "sizes": [26, 30, 40],
       "price": 675,
-      "category": 1,
+      "category": 0,
       "rating": 9
     },
     {
@@ -87,7 +87,7 @@
       "types": ["тонкое", "традиционное"],
       "sizes": [26, 30, 40],
       "price": 395,
-      "category": 5,
+      "category": 4,
       "rating": 10
     },
     {
@@ -97,7 +97,7 @@
       "types": ["тонкое", "традиционное"],
       "sizes": [26, 30, 40],
       "price": 285,
-      "category": 5,
+      "category": 1,
       "rating": 7
     }
   ]

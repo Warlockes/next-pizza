@@ -1,5 +1,3 @@
-import axios from "axios";
-
 import { Home } from "../components";
 
 function Index() {

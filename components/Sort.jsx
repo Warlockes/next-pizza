@@ -1,10 +1,10 @@
 import { useState, useRef, useEffect, memo } from "react";
 import PropTypes from "prop-types";
 
-const Sort = memo(function Sort({ sortBy, onClick }) {
+const Sort = memo(function Sort({ sortBy, activeSortType, onClick }) {
   const [visiblePopup, setVisiblePopup] = useState(false);
-  const [selectedItemIndex, setSelectedItemIndex] = useState(0);
   const sortRef = useRef();
+  const activeLabel = sortBy.find((item) => item.type === activeSortType)?.name;
 
   useEffect(() => {
     document.body.addEventListener("click", handleOutsidePopupClick);
@@ -15,11 +15,6 @@ const Sort = memo(function Sort({ sortBy, onClick }) {
 
   const tooglePopupVisible = () => {
     setVisiblePopup(!visiblePopup);
-  };
-
-  const onSelect = (index, type) => {
-    setSelectedItemIndex(index);
-    onClick(type);
   };
 
   const handleOutsidePopupClick = (event) => {
@@ -45,18 +40,16 @@ const Sort = memo(function Sort({ sortBy, onClick }) {
           />
         </svg>
         <b>Сортировка по:</b>
-        <span onClick={tooglePopupVisible}>
-          {sortBy[selectedItemIndex].name}
-        </span>
+        <span onClick={tooglePopupVisible}>{activeLabel}</span>
       </div>
       {visiblePopup && (
         <div className="sort__popup">
           <ul>
-            {sortBy?.map((item, index) => (
+            {sortBy?.map((item) => (
               <li
-                key={`${item.name}_${index}`}
-                className={selectedItemIndex === index ? "active" : ""}
-                onClick={() => onSelect(index, item.type)}
+                key={item.name}
+                className={activeSortType === item.type ? "active" : ""}
+                onClick={() => onClick(item.type)}
               >
                 {item.name}
               </li>
@@ -70,10 +63,12 @@ const Sort = memo(function Sort({ sortBy, onClick }) {
 
 Sort.propTypes = {
   sortBy: PropTypes.arrayOf(PropTypes.object),
+  activeSortType: PropTypes.string,
+  onClick: PropTypes.func.isRequired,
 };
 
 Sort.defaultProps = {
-  sortBy: {},
+  sortBy: [],
 };
 
 export default Sort;

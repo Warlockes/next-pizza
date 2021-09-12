@@ -24,6 +24,7 @@
 }
 
 .pizza-item{
+	box-sizing: border-box;
 	display: inline-flex;
 	flex-direction: column;
 	align-items: center;

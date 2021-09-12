@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Header, CartPizzaItem, EmptyCart, Button } from "../components";
 
 function Cart() {
-  let emptyCart = false;
+  let emptyCart = true;
   return (
     <>
       <div className="wrapper">

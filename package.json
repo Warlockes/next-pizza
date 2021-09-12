@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "fake-json": "json-server ./assets/db.json --watch --port 3001"
+    "server": "json-server ./assets/db.json --watch --port 3001"
   },
   "dependencies": {
     "axios": "^0.21.1",
@@ -16,8 +16,8 @@
     "next": "11.1.0",
     "prop-types": "^15.7.2",
     "react": "17.0.2",
+    "react-content-loader": "^6.0.3",
     "react-dom": "17.0.2",
-    "react-loading-skeleton": "^2.2.0",
     "react-redux": "^7.2.4",
     "redux": "^4.1.1",
     "redux-devtools-extension": "^2.13.9",

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import PropTypes from "prop-types";
 
-import { Button } from "./";
+import { Button } from "..";
 
 function PizzaItem({ name, imageUrl, price, sizes, types }) {
   const [selectedPizzaSizeId, setSelectedPizzaSizeId] = useState(0);

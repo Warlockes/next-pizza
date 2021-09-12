@@ -1,10 +1,23 @@
 import axios from "axios";
 
-export function fetchPizzas() {
+export const setLoaded = (payload) => ({
+  type: "SET_LOADED",
+  payload,
+});
+
+export function fetchPizzas(categoryIndex, sortType) {
+  console.log(categoryIndex, sortType);
   return function (dispatch) {
-    axios.get("http://localhost:3001/pizzas").then(({ data }) => {
-      dispatch(setPizzas(data));
-    });
+    dispatch(setLoaded(false));
+    axios
+      .get(
+        `http://localhost:3001/pizzas?${
+          categoryIndex !== null ? `category=${categoryIndex}` : ""
+        }&_sort=${sortType}&_order=asc`
+      )
+      .then(({ data }) => {
+        dispatch(setPizzas(data));
+      });
   };
 }
 
