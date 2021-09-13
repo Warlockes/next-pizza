@@ -10,6 +10,8 @@
 		display: flex;
 		align-items: center;
 		font-family: 'Proximanova';
+		cursor: pointer;
+		user-select: none;
 
 		img{
 			width: 38px;

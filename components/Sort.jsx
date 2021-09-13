@@ -18,7 +18,11 @@ const Sort = memo(function Sort({ sortBy, activeSortType, onClick }) {
   };
 
   const handleOutsidePopupClick = (event) => {
-    if (!event.path.includes(sortRef.current)) {
+    const path =
+      event.path ||
+      (event.composedPath && event.composedPath()) ||
+      composedPath(event.target);
+    if (!path.includes(sortRef.current)) {
       setVisiblePopup(false);
     }
   };

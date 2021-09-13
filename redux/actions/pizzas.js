@@ -1,12 +1,12 @@
 import axios from "axios";
+import { Types } from "../types";
 
 export const setLoaded = (payload) => ({
-  type: "SET_LOADED",
+  type: Types.SET_LOADED,
   payload,
 });
 
 export function fetchPizzas(categoryIndex, sortType) {
-  console.log(categoryIndex, sortType);
   return function (dispatch) {
     dispatch(setLoaded(false));
     axios
@@ -23,7 +23,7 @@ export function fetchPizzas(categoryIndex, sortType) {
 
 export function setPizzas(items) {
   return {
-    type: "SET_PIZZAS",
+    type: Types.SET_PIZZAS,
     payload: items,
   };
 }

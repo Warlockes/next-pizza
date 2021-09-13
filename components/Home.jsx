@@ -1,17 +1,15 @@
 import React, { useEffect, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
+import { Categories, ItemsLoader, PizzaItem, Sort } from "../components";
 import {
-  Categories,
-  Header,
-  ItemsLoader,
-  PizzaItem,
-  Sort,
-} from "../components";
-import { setCategory, setSortBy } from "../redux/actions/filters";
-import { fetchPizzas } from "../redux/actions/pizzas";
+  setCategory,
+  setSortBy,
+  fetchPizzas,
+  addPizzaToCart,
+} from "../redux/actions";
 
-const categories = ["Мясная", "Вегетарианская", "Гриль", "Острая", "Акции"];
+const categories = ["Мясные", "Вегетарианские", "Гриль", "Острые", "Акционные"];
 
 const sortBy = [
   { name: "популярности", type: "popular" },
@@ -22,11 +20,9 @@ const sortBy = [
 function Home() {
   const dispatch = useDispatch();
   const { items, isLoaded } = useSelector(({ pizzas }) => pizzas);
-  // дополнительные ререндеры из-за useSelector filters
-  // мемоизация - решение?
-  // чекнуть hooks react-redux
   const { categoryIndex, sortType } = useSelector(({ filters }) => filters);
 
+  //ререндеры из-за useEffect + запрос на сервер при переходе в корзину и обратно
   useEffect(() => {
     dispatch(fetchPizzas(categoryIndex, sortType));
   }, [categoryIndex, sortType]);
@@ -35,39 +31,48 @@ function Home() {
     dispatch(setCategory(index));
   }, []);
 
-  const onSelectSortType = useCallback((item) => {
-    dispatch(setSortBy(item));
-  });
+  const onSelectSortType = useCallback((type) => {
+    dispatch(setSortBy(type));
+  }, []);
+
+  const onAddPizzaToCart = useCallback((pizza) => {
+    dispatch(addPizzaToCart(pizza));
+  }, []);
+
+  const activeLabel = categories[categoryIndex];
 
   return (
     <>
-      <div className="wrapper">
-        <div className="container">
-          <Header />
-          <div className="content">
-            <div className="content__top">
-              <Categories
-                activeCategoryIndex={categoryIndex}
-                categories={categories}
-                onClick={onSelectCategory}
-              />
-              <Sort
-                activeSortType={sortType}
-                sortBy={sortBy}
-                onClick={onSelectSortType}
-              />
-            </div>
-            <h2 className="content__title">Все пиццы</h2>
-            <div className="content__items">
-              {isLoaded ? (
-                items?.map((item) => {
-                  return <PizzaItem key={item.id} {...item} />;
-                })
-              ) : (
-                <ItemsLoader />
-              )}
-            </div>
-          </div>
+      <div className="content">
+        <div className="content__top">
+          <Categories
+            activeCategoryIndex={categoryIndex}
+            categories={categories}
+            onClick={onSelectCategory}
+          />
+          <Sort
+            activeSortType={sortType}
+            sortBy={sortBy}
+            onClick={onSelectSortType}
+          />
+        </div>
+        <h2 className="content__title">
+          {activeLabel ? `${activeLabel} пиццы` : "Все пиццы"}
+        </h2>
+        <div className="content__items">
+          {isLoaded ? (
+            items?.map((item) => {
+              return (
+                <PizzaItem
+                  key={item.id}
+                  onAddToCart={onAddPizzaToCart}
+                  {...item}
+                />
+              );
+            })
+          ) : (
+            <ItemsLoader />
+          )}
         </div>
       </div>
     </>

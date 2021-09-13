@@ -1,19 +1,43 @@
-import React, { useState } from "react";
+import React, { useState, memo } from "react";
+import { useSelector } from "react-redux";
 
 import PropTypes from "prop-types";
 
 import { Button } from "..";
 
-function PizzaItem({ name, imageUrl, price, sizes, types }) {
-  const [selectedPizzaSizeId, setSelectedPizzaSizeId] = useState(0);
-  const [selectedPizzaTypeId, setSelectedPizzaTypeId] = useState(0);
+const PizzaItem = memo(function PizzaItem({
+  onAddToCart,
+  name,
+  imageUrl,
+  price,
+  sizes,
+  types,
+  id,
+}) {
+  const [selectedPizzaSize, setSelectedPizzaSize] = useState(sizes[0]);
+  const [selectedPizzaType, setSelectedPizzaType] = useState(types[0]);
+  const { items } = useSelector(({ cart }) => ({
+    items: cart.items,
+  }));
 
-  const onSelectPizzaSize = (id) => {
-    setSelectedPizzaSizeId(id);
+  const onSelectPizzaSize = (size) => {
+    setSelectedPizzaSize(size);
   };
 
-  const onSelectPizzaType = (id) => {
-    setSelectedPizzaTypeId(id);
+  const onSelectPizzaType = (type) => {
+    setSelectedPizzaType(type);
+  };
+
+  const onAddItem = () => {
+    const item = {
+      id,
+      name,
+      imageUrl,
+      price,
+      size: selectedPizzaSize,
+      type: selectedPizzaType,
+    };
+    onAddToCart(item);
   };
 
   return (
@@ -23,29 +47,29 @@ function PizzaItem({ name, imageUrl, price, sizes, types }) {
         <h3 className="pizza-item__title">{name}</h3>
         <div className="pizza-item__selector">
           <ul>
-            {types?.map((type, index) => (
+            {types?.map((type) => (
               <li
                 key={type}
-                className={selectedPizzaTypeId === index ? "active" : ""}
-                onClick={() => onSelectPizzaType(index)}
+                className={selectedPizzaType === type ? "active" : ""}
+                onClick={() => onSelectPizzaType(type)}
               >
                 {type}
               </li>
             ))}
           </ul>
           <ul>
-            {sizes?.map((size, index) => (
+            {sizes?.map((size) => (
               <li
                 key={size}
-                className={selectedPizzaSizeId === index ? "active" : ""}
-                onClick={() => onSelectPizzaSize(index)}
+                className={selectedPizzaSize === size ? "active" : ""}
+                onClick={() => onSelectPizzaSize(size)}
               >{`${size} см.`}</li>
             ))}
           </ul>
         </div>
         <div className="pizza-item__bottom">
           <div className="pizza-item__price">{`от ${price} руб.`}</div>
-          <Button className="button_add button_outline">
+          <Button className="button_add button_outline" onClick={onAddItem}>
             <svg
               width="12"
               height="12"
@@ -59,20 +83,22 @@ function PizzaItem({ name, imageUrl, price, sizes, types }) {
               />
             </svg>
             <span>Добавить</span>
-            <i>2</i>
+            {items[id] ? <i>{items[id].length}</i> : null}
           </Button>
         </div>
       </div>
     </>
   );
-}
+});
 
 PizzaItem.propTypes = {
+  onAddToCart: PropTypes.func.isRequired,
   name: PropTypes.string,
   imageUrl: PropTypes.string,
   price: PropTypes.number,
   sizes: PropTypes.arrayOf(PropTypes.number),
   types: PropTypes.arrayOf(PropTypes.string),
+  id: PropTypes.number.isRequired,
 };
 
 PizzaItem.defaultProps = {

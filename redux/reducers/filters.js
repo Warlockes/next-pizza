@@ -1,3 +1,5 @@
+import { Types } from "../types";
+
 const initialState = {
   categoryIndex: null,
   sortType: "popular",
@@ -5,10 +7,10 @@ const initialState = {
 
 function filters(state = initialState, action) {
   switch (action.type) {
-    case "SET_SORT_BY": {
+    case Types.SET_SORT_BY: {
       return { ...state, sortType: action.payload };
     }
-    case "SET_CATEGORY": {
+    case Types.SET_CATEGORY: {
       return { ...state, categoryIndex: action.payload };
     }
     default: {

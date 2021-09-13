@@ -7,7 +7,7 @@
       "types": ["тонкое", "традиционное"],
       "sizes": [26, 30, 40],
       "price": 600,
-      "category": 0,
+      "category": 3,
       "rating": 4
     },
     {
@@ -47,7 +47,7 @@
       "types": ["тонкое", "традиционное"],
       "sizes": [26, 30, 40],
       "price": 415,
-      "category": 3,
+      "category": 0,
       "rating": 8
     },
     {

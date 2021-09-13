@@ -1,7 +1,9 @@
+import { Types } from "../types";
+
 export function setSortBy(type) {
-  return { type: "SET_SORT_BY", payload: type };
+  return { type: Types.SET_SORT_BY, payload: type };
 }
 
 export function setCategory(index) {
-  return { type: "SET_CATEGORY", payload: index };
+  return { type: Types.SET_CATEGORY, payload: index };
 }

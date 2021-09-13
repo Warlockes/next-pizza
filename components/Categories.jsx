@@ -1,5 +1,5 @@
 import { memo } from "react";
-import PropTypes from "prop-types";
+import PropTypes, { oneOfType } from "prop-types";
 import classNames from "classnames";
 
 const Categories = memo(function Categories({
@@ -37,7 +37,7 @@ const Categories = memo(function Categories({
 });
 
 Categories.propTypes = {
-  activeCategoryIndex: PropTypes.number,
+  activeCategoryIndex: oneOfType([PropTypes.number, PropTypes.oneOf([null])]),
   categories: PropTypes.arrayOf(PropTypes.string),
   onClick: PropTypes.func.isRequired,
 };
