@@ -22,7 +22,6 @@ function Home() {
   const { items, isLoaded } = useSelector(({ pizzas }) => pizzas);
   const { categoryIndex, sortType } = useSelector(({ filters }) => filters);
 
-  //ререндеры из-за useEffect + запрос на сервер при переходе в корзину и обратно
   useEffect(() => {
     dispatch(fetchPizzas(categoryIndex, sortType));
   }, [categoryIndex, sortType]);

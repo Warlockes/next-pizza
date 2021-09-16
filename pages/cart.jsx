@@ -1,15 +1,50 @@
+import { useCallback } from "react";
 import Link from "next/link";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import { CartPizzaItem, EmptyCart, Button } from "../components";
+import {
+  clearCart,
+  decrementPizza,
+  deletePizza,
+  incrementPizza,
+} from "../redux/actions/cart";
 
 function Cart() {
+  const dispatch = useDispatch();
   const { items, totalPrice, totalCount } = useSelector(({ cart }) => cart);
+  const addedPizzas = Object.keys(items).map((key) => items[key]);
+
+  const onClearCart = useCallback(() => {
+    if (confirm("Вы действительно хотите очистить корзину?")) {
+      dispatch(clearCart());
+    }
+  }, []);
+
+  const onIncrementPizza = useCallback((id) => {
+    dispatch(incrementPizza(id));
+  }, []);
+
+  const onDecrementPizza = useCallback((id) => {
+    dispatch(decrementPizza(id));
+  }, []);
+
+  const onDeletePizza = useCallback((id) => {
+    if (confirm("Вы действительно хотите удалить пиццу?")) {
+      dispatch(deletePizza(id));
+    }
+  }, []);
+
+  const onOrder = useCallback(() => {
+    alert(
+      "Поздравляю! Вы заказали пиццу, но мы Вам ее не привезем, потому что у нас нет бэкенда..."
+    );
+  });
 
   return (
     <>
       <div className="cart-container">
-        {items ? (
+        {totalCount ? (
           <div className="cart">
             <div className="cart__top">
               <div className="cart-header">
@@ -46,7 +81,7 @@ function Cart() {
                   <span>Корзина</span>
                   <div className="cart-header__hider"></div>
                 </div>
-                <div className="cart-header__cleaner">
+                <div onClick={onClearCart} className="cart-header__cleaner">
                   <svg
                     width="20"
                     height="20"
@@ -88,16 +123,25 @@ function Cart() {
               </div>
             </div>
             <div className="cart__items">
-              <CartPizzaItem />
+              {addedPizzas?.map((pizzaArr) => (
+                <CartPizzaItem
+                  key={pizzaArr[0].id}
+                  onIncrement={onIncrementPizza}
+                  onDecrement={onDecrementPizza}
+                  onDelete={onDeletePizza}
+                  count={pizzaArr.length}
+                  {...pizzaArr[0]}
+                />
+              ))}
             </div>
             <div className="cart__total">
               <div className="total__amount">
                 <span>Всего пицц: </span>
-                <b>{`${totalCount} шт.`}</b>
+                <b>{totalCount} шт.</b>
               </div>
               <div className="total__sum">
                 <span>Сумма заказа: </span>
-                <b>{`${totalPrice} руб.`}</b>
+                <b>{totalPrice} руб.</b>
               </div>
             </div>
             <div className="cart__button-row">
@@ -121,7 +165,7 @@ function Cart() {
                   <span>Вернуться назад</span>
                 </Button>
               </Link>
-              <Button className="button_pay">
+              <Button onClick={onOrder} className="button_pay">
                 <span>Оплатить сейчас</span>
               </Button>
             </div>

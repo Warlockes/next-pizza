@@ -9,9 +9,16 @@
 	&__logo{
 		display: flex;
 		align-items: center;
-		font-family: 'Proximanova';
 		cursor: pointer;
 		user-select: none;
+		font-family: 'Proximanova';
+
+		&:hover {
+			img {
+				transform: rotate(360deg);
+				transition: transform 1s;
+			}
+		}
 
 		img{
 			width: 38px;
@@ -19,11 +26,6 @@
 			margin-right: 17px;
 			transform: rotate(0deg);
 			transition: transform 1s;
-
-			&:hover{
-				transform: rotate(360deg);
-				transition: transform 1s;
-			}
 		}
 
 		h1{

@@ -1,17 +1,35 @@
-function CartPizzaItem() {
+import { memo } from "react";
+import PropTypes from "prop-types";
+
+const CartPizzaItem = memo(function CartPizzaItem({
+  onIncrement,
+  onDecrement,
+  onDelete,
+  id,
+  name,
+  imageUrl,
+  price,
+  size,
+  type,
+  count,
+}) {
   return (
     <>
       <div className="cart-item">
         <div className="cart-item__description">
-          <img src="/img/pizza.png" alt="Pizza" />
+          <img src={imageUrl} alt="Pizza" />
           <div>
-            <h3>Чизбургер-пицца</h3>
-            <span>тонкое тесто, 30 см.</span>
+            <h3>{name}</h3>
+            <span>
+              {type} тесто, {size} см.
+            </span>
           </div>
         </div>
         <div className="cart-item__counter">
           <a>
             <svg
+              className={count === 1 ? "disabled" : ""}
+              onClick={() => onDecrement(id)}
               width="32"
               height="32"
               viewBox="0 0 32 32"
@@ -32,9 +50,10 @@ function CartPizzaItem() {
               />
             </svg>
           </a>
-          <span>3</span>
+          <span>{count}</span>
           <a>
             <svg
+              onClick={() => onIncrement(id)}
               width="32"
               height="32"
               viewBox="0 0 32 32"
@@ -56,8 +75,8 @@ function CartPizzaItem() {
             </svg>
           </a>
         </div>
-        <span className="cart-item__price">1200 руб.</span>
-        <a className="cart-item__delete">
+        <span className="cart-item__price">{price * count} руб.</span>
+        <a onClick={() => onDelete(id)} className="cart-item__delete">
           <svg
             width="32"
             height="32"
@@ -82,6 +101,18 @@ function CartPizzaItem() {
       </div>
     </>
   );
-}
+});
+
+CartPizzaItem.propTypes = {
+  name: PropTypes.string.isRequired,
+  imageUrl: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+  size: PropTypes.number.isRequired,
+  type: PropTypes.string.isRequired,
+  count: PropTypes.number.isRequired,
+  onIncrement: PropTypes.func.isRequired,
+  onDecrement: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired,
+};
 
 export default CartPizzaItem;

@@ -7,7 +7,6 @@
 	}
 
 	&__title{
-		font-family: 'Proximanova-rus';
 		font-weight: 800;
 		font-size: 32px;
 		line-height: 39px;
@@ -39,7 +38,6 @@
 	}
 
 	&__title{
-		font-family: 'Proximanova-rus';
 		font-weight: 800;
 		font-size: 20px;
 		line-height: 24px;
@@ -71,7 +69,6 @@
 				width: 100%;
 				height: 32px;
 				line-height: 32px;
-				font-family: 'Proximanova-rus';
 				font-weight: 800;
 				letter-spacing: 0.015em;
 				margin-right: 5px;
@@ -103,7 +100,6 @@
 		align-items: center;
 
 		div{
-			font-family: 'Proximanova-rus';
 			font-weight: bold;
 			font-size: 22px;
 			line-height: 27px;
@@ -113,12 +109,13 @@
 }
 
 .categories{
-	font-family: 'Proximanova-rus';
 	font-weight: bold;
 	font-size: 16px;
 	line-height: 19px;
 	letter-spacing: 0.015em;
 	display: flex;
+	user-select: none;
+	cursor: pointer;
 
 	&__item{
 		line-height: 46px;
@@ -127,17 +124,17 @@
 		height: 46px;
 		padding: 0px 20px;
 		margin-right: 9px;
-		cursor: pointer;
-		user-select: none;
 
 		&:hover{
 			background: darken(#F9F9F9, 5%)
 		}
-	}
 
-	.active {
-		background: #282828;
-		color: #fff;
+		&.active {
+			background: #282828;
+			color: #fff;
+			pointer-events: none;
+
+		}
 	}
 }
 
@@ -147,7 +144,6 @@
 	align-items: center;
 
 	&__label{
-		font-family: 'Proximanova-rus';
 		line-height: 17px;
 		letter-spacing: 0.015em;
 		display: flex;
@@ -186,22 +182,22 @@
 		padding: 13px 0px;
 		z-index: 100;
 		background-color: #FFFFFF;
+		cursor: pointer;
+		user-select: none;
 
 		ul{
 			font-family: 'Proximanova';
-
+			
 			li{
 				padding: 10px 15px;
-				cursor: pointer;
-				user-select: none;
 
 				&.active, &:hover{
 					background: lighten(#FE5F1E, 41%)
 				}
 
 				&.active{
-					font-family: 'Proximanova-rus';
 					color: #FE5F1E;
+					pointer-events: none;
 				}
 			}
 		}

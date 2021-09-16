@@ -61,7 +61,6 @@
 		}
 
 		span{
-			font-family: 'Proximanova-rus';
 			font-weight: 800;
 			font-size: 32px;
 			line-height: 39px;
@@ -127,7 +126,6 @@
 		}
 
 		h3{
-			font-family: 'Proximanova-rus';
 			font-weight: 800;
 			font-size: 22px;
 			line-height: 27px;
@@ -147,9 +145,23 @@
 		display: flex;
 		align-items: center;
 		flex: 1 1 102px;
+		user-select: none;
+
+		svg {
+			&.disabled {
+				pointer-events: none;
+				
+				circle{
+					stroke: #B6B6B6;
+				}
+
+				path{
+					fill: #B6B6B6;
+				}
+			}
+		}
 
 		span{
-			font-family: 'Proximanova-rus';
 			font-weight: 800;
 			font-size: 22px;
 			line-height: 27px;
@@ -163,7 +175,6 @@
 	}
 
 	&__price {
-		font-family: 'Proximanova-rus';
 		font-weight: 800;
 		font-size: 22px;
 		line-height: 27px;
@@ -202,7 +213,6 @@
 		}
 
 		b{
-			font-family: 'Proximanova-rus';
 			font-weight: 800;
 		}
 	}
@@ -217,7 +227,6 @@
 		}
 
 		b{
-			font-family: 'Proximanova-rus';
 			font-weight: 800;
 			color: #FE5F1E;
 		}
@@ -230,7 +239,6 @@
 	align-items: center;
 
 	&__label {
-		font-family: 'Proximanova-rus';
 		font-weight: 800;
 		font-size: 32px;
 		line-height: 32px;
@@ -274,7 +282,6 @@
 		background: #282828;
 		border-radius: 30px;
 		color: #fff;
-		font-family: 'Proximanova-rus';
 		font-weight: 800;
 		font-size: 16px;
 		line-height: 19px;

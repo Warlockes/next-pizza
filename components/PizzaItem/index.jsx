@@ -1,21 +1,20 @@
 import React, { useState, memo } from "react";
 import { useSelector } from "react-redux";
-
 import PropTypes from "prop-types";
 
 import { Button } from "..";
 
 const PizzaItem = memo(function PizzaItem({
   onAddToCart,
+  id,
   name,
   imageUrl,
   price,
   sizes,
   types,
-  id,
 }) {
-  const [selectedPizzaSize, setSelectedPizzaSize] = useState(sizes[0]);
-  const [selectedPizzaType, setSelectedPizzaType] = useState(types[0]);
+  const [selectedSize, setSelectedPizzaSize] = useState(sizes[0]);
+  const [selectedType, setSelectedPizzaType] = useState(types[0]);
   const { items } = useSelector(({ cart }) => ({
     items: cart.items,
   }));
@@ -30,12 +29,12 @@ const PizzaItem = memo(function PizzaItem({
 
   const onAddItem = () => {
     const item = {
-      id,
+      id: selectedType + selectedSize + id,
       name,
       imageUrl,
       price,
-      size: selectedPizzaSize,
-      type: selectedPizzaType,
+      size: selectedSize,
+      type: selectedType,
     };
     onAddToCart(item);
   };
@@ -50,7 +49,7 @@ const PizzaItem = memo(function PizzaItem({
             {types?.map((type) => (
               <li
                 key={type}
-                className={selectedPizzaType === type ? "active" : ""}
+                className={selectedType === type ? "active" : ""}
                 onClick={() => onSelectPizzaType(type)}
               >
                 {type}
@@ -61,7 +60,7 @@ const PizzaItem = memo(function PizzaItem({
             {sizes?.map((size) => (
               <li
                 key={size}
-                className={selectedPizzaSize === size ? "active" : ""}
+                className={selectedSize === size ? "active" : ""}
                 onClick={() => onSelectPizzaSize(size)}
               >{`${size} см.`}</li>
             ))}
@@ -83,7 +82,9 @@ const PizzaItem = memo(function PizzaItem({
               />
             </svg>
             <span>Добавить</span>
-            {items[id] ? <i>{items[id].length}</i> : null}
+            {items[selectedType + selectedSize + id] ? (
+              <i>{items[selectedType + selectedSize + id].length}</i>
+            ) : null}
           </Button>
         </div>
       </div>
@@ -93,12 +94,12 @@ const PizzaItem = memo(function PizzaItem({
 
 PizzaItem.propTypes = {
   onAddToCart: PropTypes.func.isRequired,
+  id: PropTypes.number.isRequired,
   name: PropTypes.string,
   imageUrl: PropTypes.string,
   price: PropTypes.number,
   sizes: PropTypes.arrayOf(PropTypes.number),
   types: PropTypes.arrayOf(PropTypes.string),
-  id: PropTypes.number.isRequired,
 };
 
 PizzaItem.defaultProps = {

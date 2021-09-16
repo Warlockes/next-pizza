@@ -5,7 +5,7 @@ function EmptyCart() {
     <>
       <div className="cart-empty">
         <div className="cart-empty__label">
-          <span>Корзина пустая</span>
+          <span>Корзина пуста</span>
           <img src="/img/sad.png" alt="Sad face" />
         </div>
         <div className="cart-empty__message">

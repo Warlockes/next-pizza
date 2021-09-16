@@ -1,7 +1,5 @@
 import { useRouter } from "next/router";
 import Link from "next/link";
-
-import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 
 import { Button } from "./";
@@ -12,15 +10,26 @@ function Header() {
   return (
     <>
       <div className="header">
-        <Link href="/" passHref>
+        {router.pathname === "/cart" ? (
+          <Link href="/" passHref>
+            <div className="header__logo">
+              <img src="/img/logo.png" alt="Pizza logo" />
+              <div>
+                <h1>NEXT PIZZA</h1>
+                <p>пицца со вкусом SSR</p>
+              </div>
+            </div>
+          </Link>
+        ) : (
           <div className="header__logo">
-            <img src="/img/logo.svg" alt="Pizza logo" />
+            <img src="/img/logo.png" alt="Pizza logo" />
             <div>
               <h1>NEXT PIZZA</h1>
               <p>пицца со вкусом SSR</p>
             </div>
           </div>
-        </Link>
+        )}
+
         {router.pathname !== "/cart" && (
           <div className="header__cart">
             <Link href="/cart" passHref>
@@ -37,9 +46,5 @@ function Header() {
     </>
   );
 }
-
-Header.propTypes = {
-  cart: PropTypes.bool,
-};
 
 export default Header;
