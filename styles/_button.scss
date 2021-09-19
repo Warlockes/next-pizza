@@ -160,4 +160,31 @@
 			background: darken(#FE5F1E, 10%);
 		}
 	}
+
+	&_modal {
+		background: #282828;
+		border-radius: 30px;
+		color: #fff;
+		font-weight: 800;
+		font-size: 16px;
+		line-height: 19px;
+		letter-spacing: 0.015em;
+		padding: 16px 25px;
+		user-select: none;
+		cursor: pointer;
+		display: inline-block;
+		margin-right: 20px;
+
+		&:last-child {
+			margin-right: 0;
+		}
+
+		&:hover{
+			background-color: #FE5F1E;
+		}
+
+		&:active{
+			background-color: darken(#FE5F1E, 5%);
+		}
+	}
 }

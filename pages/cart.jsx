@@ -1,8 +1,8 @@
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import Link from "next/link";
 import { useSelector, useDispatch } from "react-redux";
 
-import { CartPizzaItem, EmptyCart, Button } from "../components";
+import { CartPizzaItem, EmptyCart, Button, Modal } from "../components";
 import {
   clearCart,
   decrementPizza,
@@ -13,6 +13,7 @@ import {
 function Cart() {
   const dispatch = useDispatch();
   const { items, totalPrice, totalCount } = useSelector(({ cart }) => cart);
+  const [visiblePayModal, setVisiblePayModal] = useState(false);
   const addedPizzas = Object.keys(items).map((key) => items[key]);
 
   const onClearCart = useCallback(() => {
@@ -36,9 +37,7 @@ function Cart() {
   }, []);
 
   const onOrder = useCallback(() => {
-    alert(
-      "Поздравляю! Вы заказали пиццу, но мы Вам ее не привезем, потому что у нас нет бэкенда..."
-    );
+    setVisiblePayModal(true);
   });
 
   return (
@@ -174,6 +173,18 @@ function Cart() {
           <EmptyCart />
         )}
       </div>
+      <Modal visible={visiblePayModal}>
+        <p className="content__label">
+          Поздравляю! Вы заказали пиццу, но мы Вам ее не привезем, потому что у
+          нас нет бэкенда...
+        </p>
+        <Button
+          className="content__button button_modal"
+          onClick={() => setVisiblePayModal(false)}
+        >
+          <span>Отлично!</span>
+        </Button>
+      </Modal>
     </>
   );
 }

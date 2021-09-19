@@ -1,0 +1,31 @@
+.modal {
+	height: 100%;
+	width: 100%;
+	background-color: rgba(0, 0, 0, 0.4);
+	position: fixed;
+	top: 0;
+	left: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 1000;
+	user-select: none;
+
+	&__content {
+		width: 50%;
+		background-color: #fff;
+		padding: 30px;
+		border-radius: 15px;
+	}
+}
+
+.content {
+	&__label {
+		font-weight: 800;
+		font-size: 22px;
+		line-height: 27px;
+		letter-spacing: 0.01em;
+		margin-bottom: 3px;
+		margin-bottom: 15px;
+	}
+}

@@ -1,10 +1,9 @@
 import axios from "axios";
 import { Types } from "../types";
 
-export const setLoaded = (payload) => ({
-  type: Types.SET_LOADED,
-  payload,
-});
+export function setLoaded(payload) {
+  return { type: Types.SET_LOADED, payload };
+}
 
 export function fetchPizzas(categoryIndex, sortType) {
   return function (dispatch) {
