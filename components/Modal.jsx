@@ -1,4 +1,6 @@
-export default function Modal({ visible, children }) {
+import PropTypes from "prop-types";
+
+const Modal = ({ visible, children }) => {
   return (
     <>
       {visible ? (
@@ -8,4 +10,11 @@ export default function Modal({ visible, children }) {
       ) : null}
     </>
   );
-}
+};
+
+Modal.propTypes = {
+  visible: PropTypes.bool,
+  children: PropTypes.node,
+};
+
+export default Modal;

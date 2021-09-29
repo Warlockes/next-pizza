@@ -2,7 +2,13 @@ import { useCallback, useState } from "react";
 import Link from "next/link";
 import { useSelector, useDispatch } from "react-redux";
 
-import { CartPizzaItem, EmptyCart, Button, Modal } from "../components";
+import {
+  CartPizzaItem,
+  EmptyCart,
+  Button,
+  Modal,
+  Confirm,
+} from "../components";
 import {
   clearCart,
   decrementPizza,
@@ -14,12 +20,18 @@ function Cart() {
   const dispatch = useDispatch();
   const { items, totalPrice, totalCount } = useSelector(({ cart }) => cart);
   const [visiblePayModal, setVisiblePayModal] = useState(false);
+  const [visibleClearCartModal, setVisibleClearCartModal] = useState(false);
+  const [visibleDeletePizzaModal, setVisibleDeletePizzaModal] = useState(false);
   const addedPizzas = Object.keys(items).map((key) => items[key]);
+  let deletedPizzaId = null;
 
   const onClearCart = useCallback(() => {
-    if (confirm("Вы действительно хотите очистить корзину?")) {
-      dispatch(clearCart());
-    }
+    setVisibleClearCartModal(true);
+  }, []);
+
+  const onConfirmClearCart = useCallback(() => {
+    dispatch(clearCart());
+    setVisibleClearCartModal(false);
   }, []);
 
   const onIncrementPizza = useCallback((id) => {
@@ -31,9 +43,14 @@ function Cart() {
   }, []);
 
   const onDeletePizza = useCallback((id) => {
-    if (confirm("Вы действительно хотите удалить пиццу?")) {
-      dispatch(deletePizza(id));
-    }
+    setVisibleDeletePizzaModal(true);
+    deletedPizzaId = id;
+  }, []);
+
+  const onConfirmDeletePizza = useCallback(() => {
+    dispatch(deletePizza(deletedPizzaId));
+    deletedPizzaId = null;
+    setVisibleDeletePizzaModal(false);
   }, []);
 
   const onOrder = useCallback(() => {
@@ -185,6 +202,18 @@ function Cart() {
           <span>Отлично!</span>
         </Button>
       </Modal>
+      <Confirm
+        visible={visibleClearCartModal}
+        text={"Вы действительно хотите очистить корзину?"}
+        onConfirm={onConfirmClearCart}
+        onCancel={() => setVisibleClearCartModal(false)}
+      />
+      <Confirm
+        visible={visibleDeletePizzaModal}
+        text={"Вы действительно хотите удалить пиццу?"}
+        onConfirm={onConfirmDeletePizza}
+        onCancel={() => setVisibleDeletePizzaModal(false)}
+      />
     </>
   );
 }
