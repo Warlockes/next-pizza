@@ -13,7 +13,7 @@ const categories = ["Мясные", "Вегетарианские", "Гриль"
 
 const sortBy = [
   { name: "популярности", type: "popular" },
-  { name: "цене", type: "price" },
+  { name: "цене", type: "minPrice" },
   { name: "алфавиту", type: "name" },
 ];
 

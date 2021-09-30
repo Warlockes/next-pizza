@@ -25,6 +25,7 @@
 		background: rgba(255, 255, 255, 0.25);
 		width: 1px;
 		height: 25px;
+		margin: 0px 6px;
 	}
 
 	span{
@@ -35,10 +36,14 @@
 	}
 
 	&_cart{
-		width: 150px;
+		display: flex;
 		height: 50px;
 		padding: 0px 15px;
 		background: #FE5F1E;
+
+		img {
+			margin-right: 6px;
+		}
 
 		&:hover{
 			background: darken(#FE5F1E, 5%);

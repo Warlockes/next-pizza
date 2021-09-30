@@ -9,32 +9,36 @@ const PizzaItem = memo(function PizzaItem({
   id,
   name,
   imageUrl,
-  price,
+  prices,
   sizes,
   types,
 }) {
-  const [selectedSize, setSelectedPizzaSize] = useState(sizes[0]);
-  const [selectedType, setSelectedPizzaType] = useState(types[0]);
+  const renderedTypes = Object.values(types);
+  const [selectedSizeId, setSelectedPizzaSizeId] = useState(0);
+  const [selectedTypeId, setSelectedPizzaTypeId] = useState(0);
+  const selectedPizzaPrice =
+    prices[Object.keys(types)[selectedTypeId]][selectedSizeId];
+  const selectedSize = sizes[selectedSizeId];
   const { items } = useSelector(({ cart }) => ({
     items: cart.items,
   }));
 
-  const onSelectPizzaSize = (size) => {
-    setSelectedPizzaSize(size);
+  const onSelectPizzaSize = (sizeId) => {
+    setSelectedPizzaSizeId(sizeId);
   };
 
-  const onSelectPizzaType = (type) => {
-    setSelectedPizzaType(type);
+  const onSelectPizzaType = (typeId) => {
+    setSelectedPizzaTypeId(typeId);
   };
 
   const onAddItem = () => {
     const item = {
-      id: selectedType + selectedSize + id,
+      id: `${selectedTypeId}${selectedSize}${id}`,
       name,
       imageUrl,
-      price,
+      price: selectedPizzaPrice,
       size: selectedSize,
-      type: selectedType,
+      type: renderedTypes[selectedTypeId],
     };
     onAddToCart(item);
   };
@@ -46,28 +50,28 @@ const PizzaItem = memo(function PizzaItem({
         <h3 className="pizza-item__title">{name}</h3>
         <div className="pizza-item__selector">
           <ul>
-            {types?.map((type) => (
+            {renderedTypes?.map((type, index) => (
               <li
                 key={type}
-                className={selectedType === type ? "active" : ""}
-                onClick={() => onSelectPizzaType(type)}
+                className={selectedTypeId === index ? "active" : ""}
+                onClick={() => onSelectPizzaType(index)}
               >
                 {type}
               </li>
             ))}
           </ul>
           <ul>
-            {sizes?.map((size) => (
+            {sizes?.map((size, index) => (
               <li
                 key={size}
-                className={selectedSize === size ? "active" : ""}
-                onClick={() => onSelectPizzaSize(size)}
+                className={selectedSizeId === index ? "active" : ""}
+                onClick={() => onSelectPizzaSize(index)}
               >{`${size} см.`}</li>
             ))}
           </ul>
         </div>
         <div className="pizza-item__bottom">
-          <div className="pizza-item__price">{`от ${price} руб.`}</div>
+          <div className="pizza-item__price">{`${selectedPizzaPrice} руб.`}</div>
           <Button className="button_add button_outline" onClick={onAddItem}>
             <svg
               width="12"
@@ -82,8 +86,8 @@ const PizzaItem = memo(function PizzaItem({
               />
             </svg>
             <span>Добавить</span>
-            {items[selectedType + selectedSize + id] ? (
-              <i>{items[selectedType + selectedSize + id].length}</i>
+            {items[`${selectedTypeId}${selectedSize}${id}`] ? (
+              <i>{items[`${selectedTypeId}${selectedSize}${id}`].length}</i>
             ) : null}
           </Button>
         </div>
@@ -97,18 +101,18 @@ PizzaItem.propTypes = {
   id: PropTypes.number.isRequired,
   name: PropTypes.string,
   imageUrl: PropTypes.string,
-  price: PropTypes.number,
+  prices: PropTypes.object,
   sizes: PropTypes.arrayOf(PropTypes.number),
-  types: PropTypes.arrayOf(PropTypes.string),
+  types: PropTypes.object,
 };
 
 PizzaItem.defaultProps = {
   name: "---",
   imageUrl:
     "https://dodopizza.azureedge.net/static/Img/Products/Pizza/ru-RU/ec29465e-606b-4a04-a03e-da3940d37e0e.jpg",
-  price: 0,
+  prices: {},
   sizes: [],
-  types: [],
+  types: {},
 };
 
 export default PizzaItem;
