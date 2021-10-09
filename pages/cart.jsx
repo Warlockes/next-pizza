@@ -55,7 +55,7 @@ function Cart() {
 
   const onOrder = useCallback(() => {
     setVisiblePayModal(true);
-  });
+  }, []);
 
   return (
     <>
