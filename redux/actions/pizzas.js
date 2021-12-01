@@ -10,7 +10,7 @@ export function fetchPizzas(categoryIndex, sortType) {
     dispatch(setLoaded(false));
     axios
       .get(
-        `http://localhost:3001/pizzas?${
+        `https://json-server-todo-alex.herokuapp.com/pizzas?${
           categoryIndex !== null ? `category=${categoryIndex}` : ""
         }&_sort=${sortType}&_order=asc`
       )
