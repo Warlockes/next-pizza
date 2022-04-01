@@ -10,6 +10,7 @@
     "server": "json-server ./assets/db.json --watch --port 3001"
   },
   "dependencies": {
+    "@types/uuid": "^8.3.4",
     "axios": "^0.21.1",
     "class-names": "^1.0.0",
     "immer": "^9.0.6",
@@ -26,7 +27,11 @@
     "sass": "^1.38.2"
   },
   "devDependencies": {
+    "@types/node": "^17.0.23",
+    "@types/react": "^17.0.43",
+    "@types/react-dom": "^17.0.14",
     "eslint": "7.32.0",
-    "eslint-config-next": "11.1.0"
+    "eslint-config-next": "11.1.0",
+    "typescript": "^4.6.3"
   }
 }
