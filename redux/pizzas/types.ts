@@ -1,3 +1,5 @@
+import { SortParams, SortOrder, SortType } from "../filter/types";
+
 export interface Pizza {
   id: number;
   imageUrl: string;
@@ -25,4 +27,9 @@ export enum LoadingStatus {
 export interface PizzaSliceState {
   items: Pizza[];
   loadingStatus: LoadingStatus;
+}
+
+export interface FetchPizza {
+  categoryIndex: number | null;
+  sort: SortParams;
 }

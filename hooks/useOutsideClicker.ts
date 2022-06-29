@@ -1,12 +1,12 @@
 import React from "react";
 
 export const useOutsideClicker = (
-  ref: React.MutableRefObject<HTMLDivElement | null>,
+  ref: React.MutableRefObject<HTMLDivElement>,
   callback: () => void
 ) => {
   React.useEffect(() => {
     const handleClickOutside = (event) => {
-      if (ref.current && !ref.current.contains(event.target)) {
+      if (!ref.current?.contains(event.target)) {
         callback();
       }
     };
@@ -16,5 +16,5 @@ export const useOutsideClicker = (
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [ref]);
+  }, []);
 };

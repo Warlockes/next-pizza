@@ -1,9 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { FiltersState } from "./types";
+import { SORT_BY } from "../../constants";
+import { FiltersState, SortParams } from "./types";
 
 const initialState: FiltersState = {
   categoryIndex: null,
-  sortType: "popular",
+  sort: SORT_BY[0],
 };
 
 export const filterSlice = createSlice({
@@ -14,12 +15,12 @@ export const filterSlice = createSlice({
       state.categoryIndex = action.payload;
     },
 
-    setSortType(state, action: PayloadAction<string>) {
-      state.sortType = action.payload;
+    setSort(state, action: PayloadAction<SortParams>) {
+      state.sort = action.payload;
     },
   },
 });
 
-export const { setCategoryIndex, setSortType } = filterSlice.actions;
+export const { setCategoryIndex, setSort } = filterSlice.actions;
 
 export default filterSlice.reducer;
