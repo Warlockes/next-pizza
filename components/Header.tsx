@@ -17,7 +17,7 @@ export const Header = () => {
 
   return (
     <div className="header">
-      {pathname === Routes.Cart ? <LogoWithHomeLink /> : <Logo />}
+      {pathname === Routes.Home ? <Logo /> : <LogoWithHomeLink />}
       {pathname !== Routes.Cart && (
         <div className="header__cart">
           <Link href={Routes.Cart} passHref>

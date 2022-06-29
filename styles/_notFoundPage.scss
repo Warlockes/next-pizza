@@ -1,0 +1,45 @@
+.not-found-page {
+  &__container {
+    padding: 100px;
+    max-width: 750px;
+    margin: 0 auto;
+    text-align: center;
+
+    h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+
+    span {
+      font-size: 64px;
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+  }
+
+  &__description {
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+
+  &__button {
+    background: #282828;
+    border-radius: 30px;
+    color: #fff;
+    font-weight: 800;
+    font-size: 16px;
+    line-height: 19px;
+    letter-spacing: 0.015em;
+    padding: 16px 25px;
+    user-select: none;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #fe5f1e;
+    }
+
+    &:active {
+      background-color: darken(#fe5f1e, 5%);
+    }
+  }
+}
