@@ -1,11 +1,7 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import {
-  decrementPizza,
-  deletePizza,
-  incrementPizza,
-} from "../redux/ducks/cart/actionCreator";
-import { AddedItem } from "../redux/ducks/cart/state";
+import { decrementItem, incrementItem, removeItem } from "../redux/cart/slice";
+import { AddedItem } from "../redux/cart/types";
+import { useAppDispatch } from "../redux/hooks";
 import { Confirm } from "./Confirm";
 import { DecrementIcon } from "./Icons/DecrementIcon";
 import { DeleteIcon } from "./Icons/DeleteIcon";
@@ -17,16 +13,16 @@ interface CartPizzaItemProps {
 
 export const CartPizzaItem: React.FC<CartPizzaItemProps> = ({ item }) => {
   const [visibleModal, setVisibleModal] = React.useState<boolean>(false);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const { pizza, count, id } = item;
   const { imageUrl, name, type, size, price } = pizza;
 
   const handleDecrementPizza = () => {
-    dispatch(decrementPizza(id));
+    dispatch(decrementItem(id));
   };
 
   const handleIncrementPizza = () => {
-    dispatch(incrementPizza(id));
+    dispatch(incrementItem(id));
   };
 
   const handleOpenDeleteModal = () => {
@@ -38,7 +34,7 @@ export const CartPizzaItem: React.FC<CartPizzaItemProps> = ({ item }) => {
   };
 
   const handleDeletePizza = () => {
-    dispatch(deletePizza(id));
+    dispatch(removeItem(id));
     handleCloseDeleteModal();
   };
 

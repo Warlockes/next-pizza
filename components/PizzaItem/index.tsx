@@ -1,12 +1,12 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Pizza } from "../../redux/ducks/pizzas/state";
+import { selectCartData } from "../../redux/cart/selectors";
+import { addItem, incrementItem } from "../../redux/cart/slice";
+import { AddedItem } from "../../redux/cart/types";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { Pizza } from "../../redux/pizzas/types";
 
 import { Button } from "../Button";
 import { PlusIcon } from "../Icons/PlusIcon";
-import { AddedItem } from "../../redux/ducks/cart/state";
-import { addPizza, incrementPizza } from "../../redux/ducks/cart/actionCreator";
-import { selectCartState } from "../../redux/ducks/cart/selectors";
 
 interface PizzaItem {
   item: Pizza;
@@ -15,8 +15,8 @@ interface PizzaItem {
 export const PizzaItem: React.FC<PizzaItem> = ({ item }) => {
   const [selectedTypeIndex, setSelectedTypeIndex] = React.useState<number>(0);
   const [selectedSizeIndex, setSelectedSizeIndex] = React.useState<number>(0);
-  const dispatch = useDispatch();
-  const { addedItems } = useSelector(selectCartState);
+  const dispatch = useAppDispatch();
+  const { addedItems } = useAppSelector(selectCartData);
   const { imageUrl, name, prices, sizes, types, id } = item;
   const renderedTypes = Object.values(types);
   const doughTypes = Object.keys(types);
@@ -36,7 +36,7 @@ export const PizzaItem: React.FC<PizzaItem> = ({ item }) => {
 
   const handleAddPizza = () => {
     if (isAddedPizza) {
-      dispatch(incrementPizza(addedPizzaId));
+      dispatch(incrementItem(addedPizzaId));
       return;
     }
 
@@ -52,7 +52,7 @@ export const PizzaItem: React.FC<PizzaItem> = ({ item }) => {
       },
     };
 
-    dispatch(addPizza(addedPizza));
+    dispatch(addItem(addedPizza));
   };
 
   return (

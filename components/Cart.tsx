@@ -1,8 +1,8 @@
 import Link from "next/link";
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { clearCart } from "../redux/ducks/cart/actionCreator";
-import { selectCartState } from "../redux/ducks/cart/selectors";
+import { selectCartData } from "../redux/cart/selectors";
+import { clearCart } from "../redux/cart/slice";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { Button } from "./Button";
 import { CartPizzaItem } from "./CartPizzaItem";
 import { Confirm } from "./Confirm";
@@ -17,8 +17,10 @@ export const Cart: React.FC = () => {
     React.useState<boolean>(false);
   const [visibleClearCartModal, setVisibleClearCartModal] =
     React.useState<boolean>(false);
-  const dispatch = useDispatch();
-  const { addedItems, totalPrice, totalCount } = useSelector(selectCartState);
+  const dispatch = useAppDispatch();
+  const { addedItems, totalPrice } = useAppSelector(selectCartData);
+
+  const totalCount = addedItems.reduce((accum, item) => item.count + accum, 0);
 
   const handleOpenClearCartModal = () => {
     setVisibleClearCartModal(true);

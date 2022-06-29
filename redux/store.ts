@@ -1,21 +1,20 @@
-import { createStore, applyMiddleware, compose } from "redux";
-import { composeWithDevTools } from "redux-devtools-extension";
-import thunk from "redux-thunk";
-import { CartState } from "./ducks/cart/state";
-import { FiltersState } from "./ducks/filters/state";
-import { PizzasState } from "./ducks/pizzas/state";
+import { configureStore } from "@reduxjs/toolkit";
+import pizza from "./pizzas/slice";
+import cart from "./cart/slice";
+import filter from "./filter/slice";
 
-import { rootReducer } from "./rootReducer";
-
-export interface RootState {
-  pizzas: PizzasState;
-  filters: FiltersState;
-  cart: CartState;
+export function makeStore() {
+  return configureStore({
+    reducer: {
+      pizza,
+      cart,
+      filter,
+    },
+  });
 }
 
-const composeEnhancers = composeWithDevTools || compose;
+export const store = makeStore();
 
-export const store = createStore(
-  rootReducer,
-  composeEnhancers(applyMiddleware(thunk) as any)
-);
+export type AppStore = ReturnType<typeof makeStore>;
+export type AppState = ReturnType<AppStore["getState"]>;
+export type AppDispatch = typeof store.dispatch;

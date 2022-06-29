@@ -1,17 +1,19 @@
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { useSelector } from "react-redux";
 
 import { Button } from "./Button";
 import { Logo } from "./Logo";
 import { withLink } from "../hoc/withLink";
 import { Routes } from "../constants";
-import { selectCartState } from "../redux/ducks/cart/selectors";
+import { useAppSelector } from "../redux/hooks";
+import { selectCartData } from "../redux/cart/selectors";
 
 export const Header = () => {
-  const { totalPrice, totalCount } = useSelector(selectCartState);
+  const { addedItems, totalPrice } = useAppSelector(selectCartData);
   const { pathname } = useRouter();
-  const LogoWithHomeLink = withLink(Logo, Routes.Home);
+  const LogoWithHomeLink = withLink(Logo, Routes.Home); //переделать
+
+  const totalCount = addedItems.reduce((accum, item) => item.count + accum, 0);
 
   return (
     <div className="header">

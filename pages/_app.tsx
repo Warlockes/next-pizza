@@ -1,3 +1,4 @@
+import { AppProps } from "next/app";
 import { Provider } from "react-redux";
 
 import { Header } from "../components/Header";
@@ -9,16 +10,16 @@ import "../styles/style.scss";
 // 1) Сделать соритровку по цене не через minPrice
 // 2) Сделать dispatch для модальных окон
 
-function App({ Component, pageProps }) {
+function App({ Component, pageProps }: AppProps) {
   return (
-    <Provider store={store}>
-      <div className="wrapper">
-        <div className="container">
+    <div className="wrapper">
+      <div className="container">
+        <Provider store={store}>
           <Header />
           <Component {...pageProps} />
-        </div>
+        </Provider>
       </div>
-    </Provider>
+    </div>
   );
 }
 

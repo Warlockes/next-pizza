@@ -1,25 +1,25 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
 
 import { Categories } from "./Categories";
 import { PizzaItem } from "./PizzaItem";
 import { ItemsLoader } from "./PizzaItem/ItemsLoader";
 import { Sort } from "./Sort";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { selectPizzasData } from "../redux/pizzas/selectors";
+import { LoadingStatus } from "../redux/pizzas/types";
+import { fetchPizzas } from "../redux/pizzas/asyncActions";
 import { CATEGORIES } from "../constants";
-import { selectPizzasState } from "../redux/ducks/pizzas/selectors";
-import { LoadingStatus } from "../redux/ducks/pizzas/state";
-import { selectFiltersState } from "../redux/ducks/filters/selectors";
-import { fetchPizzas } from "../redux/ducks/pizzas/actionCreator";
+import { selectFilterData } from "../redux/filter/selectors";
 
 export const Home: React.FC = () => {
-  const dispatch = useDispatch();
-  const { items, loadingStatus } = useSelector(selectPizzasState);
-  const { categoryIndex, sortType } = useSelector(selectFiltersState);
+  const dispatch = useAppDispatch();
+  const { items, loadingStatus } = useAppSelector(selectPizzasData);
+  const { categoryIndex, sortType } = useAppSelector(selectFilterData);
   const activeLabel = CATEGORIES[categoryIndex];
   const isLoaded = loadingStatus === LoadingStatus.LOADED;
 
   React.useEffect(() => {
-    dispatch(fetchPizzas(categoryIndex, sortType));
+    dispatch(fetchPizzas({ categoryIndex, sortType }));
   }, [categoryIndex, sortType]);
 
   return (

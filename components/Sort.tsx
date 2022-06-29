@@ -1,8 +1,8 @@
 import React from "react";
-import { useDispatch } from "react-redux";
 import { SORT_BY } from "../constants";
 import { useOutsideClicker } from "../hooks/useOutsideClicker";
-import { setSortType } from "../redux/ducks/filters/actionCreator";
+import { setSortType } from "../redux/filter/slice";
+import { useAppDispatch } from "../redux/hooks";
 import { ArrowDown } from "./Icons/ArrowDown";
 
 interface SortProps {
@@ -11,7 +11,7 @@ interface SortProps {
 
 export const Sort: React.FC<SortProps> = ({ activeSortType }) => {
   const [visiblePopup, setVisiblePopup] = React.useState<boolean>(false);
-  const disptach = useDispatch();
+  const disptach = useAppDispatch();
   const popupRef = React.useRef<HTMLDivElement | null>(null);
   useOutsideClicker(popupRef, () => setVisiblePopup(false));
   const activeLabel = SORT_BY.find(({ type }) => type === activeSortType).name;

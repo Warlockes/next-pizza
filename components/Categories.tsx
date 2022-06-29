@@ -1,7 +1,7 @@
 import classNames from "classnames";
-import { useDispatch } from "react-redux";
 import { CATEGORIES } from "../constants";
-import { setCategoryIndex } from "../redux/ducks/filters/actionCreator";
+import { setCategoryIndex } from "../redux/filter/slice";
+import { useAppDispatch } from "../redux/hooks";
 
 interface CategoriesProps {
   activeCategoryIndex: number | null;
@@ -10,7 +10,7 @@ interface CategoriesProps {
 export const Categories: React.FC<CategoriesProps> = ({
   activeCategoryIndex,
 }) => {
-  const dispath = useDispatch();
+  const dispath = useAppDispatch();
 
   const handleClickItem = (index: number | null) => {
     dispath(setCategoryIndex(index));

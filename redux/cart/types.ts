@@ -12,6 +12,5 @@ export interface AddedItem {
 
 export interface CartState {
   addedItems: AddedItem[];
-  totalCount: number;
   totalPrice: number;
 }

@@ -19,9 +19,10 @@ export enum LoadingStatus {
   NEVER = "NEVER",
   LOADING = "LOADING",
   LOADED = "LOADED",
+  ERROR = "ERROR",
 }
 
-export interface PizzasState {
+export interface PizzaSliceState {
   items: Pizza[];
   loadingStatus: LoadingStatus;
 }
