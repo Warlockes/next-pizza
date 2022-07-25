@@ -1,4 +1,4 @@
-import { SortParams, SortOrder, SortType } from "../filter/types";
+import { SortParams } from "../filter/types";
 
 export interface Pizza {
   id: number;
@@ -29,7 +29,7 @@ export interface PizzaSliceState {
   loadingStatus: LoadingStatus;
 }
 
-export interface FetchPizza {
+export interface FetchSortedPizzas {
   categoryIndex: number | null;
   sort: SortParams;
 }

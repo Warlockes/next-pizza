@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import { selectCartData } from "../../redux/cart/selectors";
 import { addItem, incrementItem } from "../../redux/cart/slice";
@@ -57,8 +58,12 @@ export const PizzaItem: React.FC<PizzaItem> = ({ item }) => {
 
   return (
     <div className="pizza-item">
-      <img className="pizza-item__image" src={imageUrl} alt="Pizza" />
-      <h3 className="pizza-item__title">{name}</h3>
+      <Link href={`/pizza/${item.id}`}>
+        <a>
+          <img className="pizza-item__image" src={imageUrl} alt="Pizza" />
+          <h3 className="pizza-item__title">{name}</h3>
+        </a>
+      </Link>
       <div className="pizza-item__selector">
         <ul>
           {renderedTypes.map((type, index) => (

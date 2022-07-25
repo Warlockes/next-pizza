@@ -103,6 +103,7 @@ button::-moz-focus-inner {
 a,
 a:visited {
   text-decoration: none;
+  color: inherit;
 }
 a:hover {
   text-decoration: none;
@@ -147,6 +148,7 @@ h6 {
 @import "_button.scss";
 @import "_modal.scss";
 @import "_notFoundPage.scss";
+@import "_fullPizzaPage.scss";
 //</Подключение стилей>
 
 //<Основной блок>

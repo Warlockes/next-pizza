@@ -2,9 +2,6 @@ import { useRouter } from "next/router";
 import { Button } from "../components/Button";
 import { Routes } from "../constants";
 
-//TODO
-// переписать кнопку
-
 export default function Custom404() {
   const { replace } = useRouter();
 
